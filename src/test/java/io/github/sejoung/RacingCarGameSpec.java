@@ -20,4 +20,13 @@ public class RacingCarGameSpec {
 		RacingCarGame game = new RacingCarGame(new CarForwardSelectorStub(true));
 		assertThat(game.isCompleted()).isFalse();
 	}
+
+	@DisplayName("2대 이상의 자동차가 필요하다.")
+	@Test
+	void sut_first_player_input() {
+		RacingCarGame game = new RacingCarGame(new CarForwardSelectorStub(true));
+		game.flushOutput();
+		game.processInput("pobi");
+		assertThat(game.flushOutput()).isEqualTo("최소 2대 이상의 자동차가 필요합니다. 이름은 쉼표(,) 기준으로 구분");
+	}
 }
