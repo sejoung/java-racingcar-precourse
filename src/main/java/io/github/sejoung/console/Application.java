@@ -13,7 +13,7 @@ public class Application {
 	}
 
 	private static void playGame(RacingCarGame game, Scanner scanner) {
-		for (int i = 0; i < 2; i++) {
+		while (game.isCompleted()) {
 			System.out.println(game.flushOutput());
 			game.processInput(scanner.nextLine());
 		}

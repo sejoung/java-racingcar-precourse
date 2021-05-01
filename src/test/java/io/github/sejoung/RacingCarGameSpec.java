@@ -13,4 +13,11 @@ public class RacingCarGameSpec {
 		RacingCarGame game = new RacingCarGame(new CarForwardSelectorStub(true));
 		assertThat(game.flushOutput()).isEqualTo("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
 	}
+
+	@DisplayName("게임 초기화시 완료상태 확인")
+	@Test
+	void sut_initialized_isCompleted_false() {
+		RacingCarGame game = new RacingCarGame(new CarForwardSelectorStub(true));
+		assertThat(game.isCompleted()).isFalse();
+	}
 }
