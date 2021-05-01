@@ -3,10 +3,11 @@ package io.github.sejoung.console;
 import java.util.Scanner;
 
 import io.github.sejoung.RacingCarGame;
+import io.github.sejoung.RandomCarForwardSelector;
 
 public class Application {
 	public static void main(String[] args) {
-		RacingCarGame game = new RacingCarGame();
+		RacingCarGame game = new RacingCarGame(new RandomCarForwardSelector());
 		Scanner scanner = new Scanner(System.in);
 		playGame(game, scanner);
 	}
