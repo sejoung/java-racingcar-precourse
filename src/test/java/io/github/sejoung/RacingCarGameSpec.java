@@ -37,6 +37,27 @@ public class RacingCarGameSpec {
 		game.flushOutput();
 		game.processInput("pobi,crong,honux");
 		assertThat(game.flushOutput()).isEqualTo("시도할 회수는 몇회인가요?");
+	}
 
+	@DisplayName("시도 횟수는 최소 1이상의 값이다.")
+	@Test
+	void sut_racing_cycle_player_input_min_one() {
+		RacingCarGame game = new RacingCarGame(new CarForwardSelectorStub(true));
+		game.flushOutput();
+		game.processInput("pobi,crong,honux");
+		game.flushOutput();
+		game.processInput("0");
+		assertThat(game.flushOutput()).isEqualTo("시도 횟수는 최소 1이상의 값이다.");
+	}
+
+	@DisplayName("시도 횟수는 숫자 값이다.")
+	@Test
+	void sut_racing_cycle_player_input_is_number() {
+		RacingCarGame game = new RacingCarGame(new CarForwardSelectorStub(true));
+		game.flushOutput();
+		game.processInput("pobi,crong,honux");
+		game.flushOutput();
+		game.processInput("pobe");
+		assertThat(game.flushOutput()).isEqualTo("숫자만 입력할수 있습니다.");
 	}
 }

@@ -9,6 +9,7 @@ public class RacingCarGame {
 	private final List<RacingCar> racingCars = new ArrayList<>();
 	private static final String CAR_NAME_SEPARATOR = ",";
 	private final CarForwardSelector selector;
+	private int racingCycle;
 
 	public RacingCarGame(CarForwardSelector selector) {
 		this.selector = selector;
@@ -29,6 +30,23 @@ public class RacingCarGame {
 		int carSize = racingCars.size();
 		if (carSize == 0 && carNameValidation(input)) {
 			createRacingCar(input);
+		}
+		if (carSize > 0 && racingCycleValidation(input)) {
+
+		}
+	}
+
+	private boolean racingCycleValidation(String input) {
+		try {
+			this.racingCycle = Integer.parseInt(input);
+			if (this.racingCycle == 0) {
+				buffer.append("시도 횟수는 최소 1이상의 값이다.");
+				return false;
+			}
+			return true;
+		} catch (NumberFormatException e) {
+			buffer.append("숫자만 입력할수 있습니다.");
+			return false;
 		}
 	}
 
