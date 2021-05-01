@@ -1,7 +1,7 @@
 package io.github.sejoung;
 
 public class RacingCar {
-	public RacingCar(CarForwardSelector selector, String name) {
+	public RacingCar(PositiveIntegerMinZeroMaxNineGenerator selector, String name) {
 	}
 
 	public void rush() {

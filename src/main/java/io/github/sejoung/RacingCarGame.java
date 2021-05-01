@@ -8,10 +8,10 @@ public class RacingCarGame {
 	private final StringBuffer buffer = new StringBuffer();
 	private final List<RacingCar> racingCars = new ArrayList<>();
 	private static final String CAR_NAME_SEPARATOR = ",";
-	private final CarForwardSelector selector;
+	private final PositiveIntegerMinZeroMaxNineGenerator selector;
 	private int racingCycle;
 
-	public RacingCarGame(CarForwardSelector selector) {
+	public RacingCarGame(PositiveIntegerMinZeroMaxNineGenerator selector) {
 		this.selector = selector;
 		this.buffer.append("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
 	}
