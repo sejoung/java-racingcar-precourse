@@ -22,4 +22,15 @@ class RacingCarTest {
 		car.rush();
 		assertThat(car.getForwardCount()).isZero();
 	}
+
+	@DisplayName("실행 결과 출력 테스트")
+	@Test
+	void sut_output() {
+		RacingCar car = new RacingCar(new PositiveIntegerMinZeroMaxNineGeneratorStub(4, 3), "sejoung");
+		car.rush();
+		assertThat(car.flushOutput()).isEqualTo("sejoung : -");
+		car.rush();
+		assertThat(car.flushOutput()).isEqualTo("sejoung : -");
+	}
+
 }
