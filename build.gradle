@@ -1,11 +1,18 @@
 apply plugin: 'java'
 apply plugin: 'eclipse'
+apply plugin: 'checkstyle'
 
 version = '1.0.0'
 sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
+}
+
+checkstyle {
+    maxWarnings = 0
+    configFile = file("${rootDir}/naver-chestyle-rules.xml")
+    toolVersion = "8.27"
 }
 
 dependencies {
