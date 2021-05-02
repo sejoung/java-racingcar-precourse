@@ -4,10 +4,11 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class RandomPositiveIntegerMinZeroMaxNineGenerator implements PositiveIntegerMinZeroMaxNineGenerator {
 
+	private static final int MIN_NUMBER = 1;
+	private static final int MAX_NUMBER = 9;
+
 	@Override
 	public int generate() {
-		int MIN_NUMBER = 1;
-		int MAX_NUMBER = 9;
 		return ThreadLocalRandom.current().nextInt(MIN_NUMBER, MAX_NUMBER);
 	}
 }

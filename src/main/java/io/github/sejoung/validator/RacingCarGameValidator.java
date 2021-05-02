@@ -10,6 +10,8 @@ import io.github.sejoung.TextOutput;
 
 public class RacingCarGameValidator {
 	private final TextOutput output;
+	private static final int CAR_NAME_ARRAY_MIN_SIZE = 1;
+	private static final int CAR_NAME_MAX_LENGTH = 5;
 
 	public RacingCarGameValidator(TextOutput output) {
 		this.output = output;
@@ -38,8 +40,7 @@ public class RacingCarGameValidator {
 	}
 
 	private void carNameArraySizeValidation(String input) {
-		int MIN_SIZE = 1;
-		if (input.split(CAR_NAME_SEPARATOR).length == MIN_SIZE) {
+		if (input.split(CAR_NAME_SEPARATOR).length == CAR_NAME_ARRAY_MIN_SIZE) {
 			throw new IllegalArgumentException("최소 2대 이상의 자동차가 필요합니다. 이름은 쉼표(,) 기준으로 구분");
 		}
 	}
@@ -54,15 +55,13 @@ public class RacingCarGameValidator {
 		Set<String> nameSet = new HashSet<>();
 		String[] names = input.split(CAR_NAME_SEPARATOR);
 		Collections.addAll(nameSet, names);
-
 		if (names.length != nameSet.size()) {
 			throw new IllegalArgumentException("자동차 이름은 중복되게 입력 할 수 없습니다.");
 		}
 	}
 
 	private void carNameLengthCheck(String carName) {
-		int MAX_LENGTH = 5;
-		if (carName.length() > MAX_LENGTH) {
+		if (carName.length() > CAR_NAME_MAX_LENGTH) {
 			throw new IllegalArgumentException("이름은 5자 이하만 가능합니다.");
 		}
 	}

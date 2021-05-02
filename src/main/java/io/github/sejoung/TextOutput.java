@@ -1,9 +1,10 @@
 package io.github.sejoung;
 
 public class TextOutput {
-	private final StringBuffer buffer = new StringBuffer();
+	private final StringBuilder buffer = new StringBuilder();
 
-	private final String LINE_SEPARATOR = System.lineSeparator();
+	public TextOutput() {
+	}
 
 	public TextOutput(String initialOutput) {
 		buffer.append(initialOutput);
@@ -19,7 +20,7 @@ public class TextOutput {
 	}
 
 	public void lineSeparator() {
-		buffer.append(LINE_SEPARATOR);
+		buffer.append(System.lineSeparator());
 	}
 
 	public String flush() {

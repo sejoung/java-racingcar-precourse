@@ -1,10 +1,11 @@
 package io.github.sejoung;
 
 public class RacingCar {
+	private static final int FORWARD_NUMBER = 4;
 	private final PositiveIntegerMinZeroMaxNineGenerator generator;
 	private final String name;
+	private final TextOutput output = new TextOutput();
 	private int forwardCount;
-	private final StringBuffer buffer = new StringBuffer();
 
 	public RacingCar(PositiveIntegerMinZeroMaxNineGenerator generator, String name) {
 		this.generator = generator;
@@ -13,7 +14,7 @@ public class RacingCar {
 
 	public void run() {
 		int number = generator.generate();
-		int FORWARD_NUMBER = 4;
+
 		if (FORWARD_NUMBER <= number) {
 			forwardCount++;
 		}
@@ -29,15 +30,14 @@ public class RacingCar {
 	}
 
 	public String flushOutput() {
-		String output = buffer.toString();
-		buffer.setLength(0);
-		return output;
+		return output.flush();
 	}
 
 	private void generatorOutput() {
-		buffer.append(name).append(" : ");
+		output.print(name);
+		output.print(" : ");
 		for (int i = 0; i < forwardCount; i++) {
-			buffer.append("-");
+			output.print("-");
 		}
 	}
 }
