@@ -11,7 +11,7 @@ class RacingCarTest {
 	@Test
 	void sut_forward_car() {
 		RacingCar car = new RacingCar(new PositiveIntegerMinZeroMaxNineGeneratorStub(4), "sejoung");
-		car.rush();
+		car.run();
 		assertThat(car.getForwardCount()).isOne();
 	}
 
@@ -19,7 +19,7 @@ class RacingCarTest {
 	@Test
 	void sut_stop_car() {
 		RacingCar car = new RacingCar(new PositiveIntegerMinZeroMaxNineGeneratorStub(3), "sejoung");
-		car.rush();
+		car.run();
 		assertThat(car.getForwardCount()).isZero();
 	}
 
@@ -27,10 +27,18 @@ class RacingCarTest {
 	@Test
 	void sut_output() {
 		RacingCar car = new RacingCar(new PositiveIntegerMinZeroMaxNineGeneratorStub(4, 3), "sejoung");
-		car.rush();
+		car.run();
 		assertThat(car.flushOutput()).isEqualTo("sejoung : -");
-		car.rush();
+		car.run();
 		assertThat(car.flushOutput()).isEqualTo("sejoung : -");
+	}
+
+	@DisplayName("정지 출력")
+	@Test
+	void sut_stop_car_output() {
+		RacingCar car = new RacingCar(new PositiveIntegerMinZeroMaxNineGeneratorStub(3), "sejoung");
+		car.run();
+		assertThat(car.flushOutput()).isEqualTo("sejoung : ");
 	}
 
 }

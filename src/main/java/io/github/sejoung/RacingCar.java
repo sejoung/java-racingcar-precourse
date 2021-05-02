@@ -11,7 +11,7 @@ public class RacingCar {
 		this.name = name;
 	}
 
-	public void rush() {
+	public void run() {
 		int number = generator.generate();
 		int FORWARD_NUMBER = 4;
 		if (FORWARD_NUMBER <= number) {
