@@ -26,11 +26,34 @@ public class RacingCarGameValidator {
 	}
 
 	public boolean carNameValidation(String input) {
-		if (input.split(CAR_NAME_SEPARATOR).length == 1) {
-			output.printMessages("최소 2대 이상의 자동차가 필요합니다. 이름은 쉼표(,) 기준으로 구분");
+		try {
+			carNameArraySizeValidation(input);
+			carNameLengthValidation(input);
+			output.printMessages("시도할 회수는 몇회인가요?");
+			return true;
+		} catch (IllegalArgumentException e) {
+			output.printMessages(e.getMessage());
 			return false;
 		}
-		output.printMessages("시도할 회수는 몇회인가요?");
-		return true;
+	}
+
+	private void carNameArraySizeValidation(String input) {
+		int MIN_SIZE = 1;
+		if (input.split(CAR_NAME_SEPARATOR).length == MIN_SIZE) {
+			throw new IllegalArgumentException("최소 2대 이상의 자동차가 필요합니다. 이름은 쉼표(,) 기준으로 구분");
+		}
+	}
+
+	private void carNameLengthValidation(String input) {
+		for (String carName : input.split(CAR_NAME_SEPARATOR)) {
+			carNameLengthCheck(carName);
+		}
+	}
+
+	private void carNameLengthCheck(String carName) {
+		int MAX_LENGTH = 5;
+		if (carName.length() > MAX_LENGTH) {
+			throw new IllegalArgumentException("이름은 5자 이하만 가능합니다.");
+		}
 	}
 }

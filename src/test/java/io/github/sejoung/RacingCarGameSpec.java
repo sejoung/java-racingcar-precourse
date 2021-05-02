@@ -30,6 +30,15 @@ public class RacingCarGameSpec {
 		assertThat(game.flushOutput()).isEqualTo("최소 2대 이상의 자동차가 필요합니다. 이름은 쉼표(,) 기준으로 구분");
 	}
 
+	@DisplayName("자동차 이름은 최대 다섯 글자이다.")
+	@Test
+	void sut_first_player_input_car_name_max_five_length() {
+		RacingCarGame game = new RacingCarGame(new PositiveIntegerMinZeroMaxNineGeneratorStub(1));
+		game.flushOutput();
+		game.processInput("pobi1,crongasd");
+		assertThat(game.flushOutput()).isEqualTo("이름은 5자 이하만 가능합니다.");
+	}
+
 	@DisplayName("시도횟수 메시지 확인")
 	@Test
 	void sut_racing_cycle_player_input() {
