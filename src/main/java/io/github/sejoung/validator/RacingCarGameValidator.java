@@ -13,12 +13,7 @@ public class RacingCarGameValidator {
 
 	public boolean racingCycleValidation(String input) {
 		try {
-			int racingCycle = Integer.parseInt(input);
-			if (racingCycle == 0) {
-				output.printMessages("시도 횟수는 최소 1이상의 값이다.");
-				return false;
-			}
-			return true;
+			return racingCycleCheck(Integer.parseInt(input));
 		} catch (NumberFormatException e) {
 			output.printMessages("숫자만 입력할수 있습니다.");
 			return false;
@@ -55,5 +50,13 @@ public class RacingCarGameValidator {
 		if (carName.length() > MAX_LENGTH) {
 			throw new IllegalArgumentException("이름은 5자 이하만 가능합니다.");
 		}
+	}
+
+	private boolean racingCycleCheck(int racingCycle) {
+		if (racingCycle == 0) {
+			output.printMessages("시도 횟수는 최소 1이상의 값이다.");
+			return false;
+		}
+		return true;
 	}
 }
