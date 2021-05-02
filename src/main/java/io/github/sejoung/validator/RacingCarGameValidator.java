@@ -2,6 +2,10 @@ package io.github.sejoung.validator;
 
 import static io.github.sejoung.constants.GameConstants.*;
 
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+
 import io.github.sejoung.TextOutput;
 
 public class RacingCarGameValidator {
@@ -24,6 +28,7 @@ public class RacingCarGameValidator {
 		try {
 			carNameArraySizeValidation(input);
 			carNameLengthValidation(input);
+			carNameDuplicateValidation(input);
 			output.print("시도할 회수는 몇회인가요?");
 			return true;
 		} catch (IllegalArgumentException e) {
@@ -42,6 +47,16 @@ public class RacingCarGameValidator {
 	private void carNameLengthValidation(String input) {
 		for (String carName : input.split(CAR_NAME_SEPARATOR)) {
 			carNameLengthCheck(carName);
+		}
+	}
+
+	private void carNameDuplicateValidation(String input) {
+		Set<String> nameSet = new HashSet<>();
+		String[] names = input.split(CAR_NAME_SEPARATOR);
+		Collections.addAll(nameSet, names);
+
+		if (names.length != nameSet.size()) {
+			throw new IllegalArgumentException("자동차 이름은 중복되게 입력 할 수 없습니다.");
 		}
 	}
 

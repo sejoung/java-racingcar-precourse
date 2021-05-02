@@ -39,6 +39,15 @@ public class RacingCarGameSpec {
 		assertThat(game.flushOutput()).isEqualTo("이름은 5자 이하만 가능합니다.");
 	}
 
+	@DisplayName("자동차 이름은 중복될 수 없다.")
+	@Test
+	void sut_first_player_input_car_name_not_duplicate() {
+		RacingCarGame game = new RacingCarGame(new PositiveIntegerMinZeroMaxNineGeneratorStub(1));
+		game.flushOutput();
+		game.processInput("pobi1,pobi1");
+		assertThat(game.flushOutput()).isEqualTo("자동차 이름은 중복되게 입력 할 수 없습니다.");
+	}
+
 	@DisplayName("시도횟수 메시지 확인")
 	@Test
 	void sut_racing_cycle_player_input() {
