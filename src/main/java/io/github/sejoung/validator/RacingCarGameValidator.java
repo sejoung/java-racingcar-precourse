@@ -15,7 +15,7 @@ public class RacingCarGameValidator {
 		try {
 			return racingCycleCheck(Integer.parseInt(input));
 		} catch (NumberFormatException e) {
-			output.printMessages("숫자만 입력할수 있습니다.");
+			output.print("숫자만 입력할수 있습니다.");
 			return false;
 		}
 	}
@@ -24,10 +24,10 @@ public class RacingCarGameValidator {
 		try {
 			carNameArraySizeValidation(input);
 			carNameLengthValidation(input);
-			output.printMessages("시도할 회수는 몇회인가요?");
+			output.print("시도할 회수는 몇회인가요?");
 			return true;
 		} catch (IllegalArgumentException e) {
-			output.printMessages(e.getMessage());
+			output.print(e.getMessage());
 			return false;
 		}
 	}
@@ -54,7 +54,7 @@ public class RacingCarGameValidator {
 
 	private boolean racingCycleCheck(int racingCycle) {
 		if (racingCycle == 0) {
-			output.printMessages("시도 횟수는 최소 1이상의 값이다.");
+			output.print("시도 횟수는 최소 1이상의 값이다.");
 			return false;
 		}
 		return true;

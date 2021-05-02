@@ -69,4 +69,38 @@ public class RacingCarGameSpec {
 		game.processInput("pobe");
 		assertThat(game.flushOutput()).isEqualTo("숫자만 입력할수 있습니다.");
 	}
+
+	@DisplayName("실행결과 메시지를 출력한다. 우승자가 한명일때")
+	@Test
+	void sut_racing_car_output_winner_one() {
+		RacingCarGame game = new RacingCarGame(new PositiveIntegerMinZeroMaxNineGeneratorStub(4, 3, 2));
+		game.flushOutput();
+		game.processInput("pobi,crong,honux");
+		game.flushOutput();
+		game.processInput("1");
+		assertThat(game.flushOutput()).isEqualTo("실행 결과\npobi : -\ncrong : \nhonux : \n\npobi가 최종 우승했습니다.");
+	}
+
+	@DisplayName("실행결과 메시지를 출력한다. 우승자가 여러명일떄")
+	@Test
+	void sut_racing_car_output_winner_many() {
+		RacingCarGame game = new RacingCarGame(new PositiveIntegerMinZeroMaxNineGeneratorStub(4, 3, 4));
+		game.flushOutput();
+		game.processInput("pobi,crong,honux");
+		game.flushOutput();
+		game.processInput("1");
+		assertThat(game.flushOutput()).isEqualTo("실행 결과\npobi : -\ncrong : \nhonux : -\n\npobi, honux가 최종 우승했습니다.");
+	}
+
+	@DisplayName("게임 완료시 완료 상태 확인")
+	@Test
+	void sut_racing_end_isCompleted_true() {
+		RacingCarGame game = new RacingCarGame(new PositiveIntegerMinZeroMaxNineGeneratorStub(4, 3, 4));
+		game.flushOutput();
+		game.processInput("pobi,crong,honux");
+		game.flushOutput();
+		game.processInput("1");
+		game.flushOutput();
+		assertThat(game.isCompleted()).isTrue();
+	}
 }

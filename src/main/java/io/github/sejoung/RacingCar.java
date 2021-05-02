@@ -24,6 +24,10 @@ public class RacingCar {
 		return forwardCount;
 	}
 
+	public String getName() {
+		return name;
+	}
+
 	public String flushOutput() {
 		String output = buffer.toString();
 		buffer.setLength(0);
